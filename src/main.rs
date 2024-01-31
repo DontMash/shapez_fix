@@ -7,16 +7,6 @@ fn main() {
     let directory = current_exe().expect("failed to get current folder");
     set_current_dir(directory.parent().unwrap()).expect("failed to set current folder");
 
-    let codesign_output = Command::new("codesign")
-        .arg("--force")
-        .arg("--deep")
-        .arg("--sign")
-        .arg("-")
-        .arg(r"shapez 2.app")
-        .output()
-        .expect("failed to execute codesign");
-    println!("codesign: {:?}", codesign_output);
-
     let quarantine_output = Command::new("xattr")
         .arg("-d")
         .arg("-r")
